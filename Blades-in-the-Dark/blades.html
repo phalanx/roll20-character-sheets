@@ -1,7 +1,7 @@
 <!--Title & Version-->
 <h1 class="sheet-gametitleimg"><img src="http://i.imgur.com/8BlXrMx.png" alt="Blades in the Dark"></h1>
-<div class="sheet-alignright">Version 0.0.9</div>
-<input type="checkbox" name="attr_sheet_type"class="sheet-typeselector" value="1"><span></span>
+<div class="sheet-alignright">Version 0.0.10</div>
+<input type="checkbox" name="attr_sheet_type" class="sheet-typeselector" value="1"><span></span>
 <hr>
 
 
@@ -70,7 +70,7 @@
     <div class="sheet-row">
 
       <div class="sheet-col"><label for="attr_vice">Vice / Purveyor:</label></div>
-      <input type="text" name="attr_vice" class="sheet-vice">
+      <input type="text" name="attr_vice" class="sheet-vice" value=" ">
 
     </div>
 
@@ -489,12 +489,10 @@
         <div class="sheet-row">
           <div class="sheet-col"><h3>Fortune</h3></div>
           <div class="sheet-col"><button type="roll" value="
-          &{template:bitd} {{name=@{character_name}}} {{fortune=?{Fortune Roll|Heat|Tier|Engagement|Gather Info|Attribute|Quality|Magnitude|Sheer Blasted Luck}}} {{note=?{Note}}} {{result=
-          [[{[[[[{?{Dice|1}+?{Extra|0}+d0}<0]]*2]]d6skl1cf<3, [[(?{Dice|1}+?{Extra|0})d1>1]]d6skh1cf<3}kh1]]}}" name="miscRoll"></button></div>
+          &{template:bitd} {{name=@{character_name}}} {{fortune=?{Fortune Roll|Heat|Tier|Engagement|Gather Info|Attribute|Quality|Magnitude|Sheer Blasted Luck}}} {{note=?{Note}}} {{result=[[{[[[[{?{Dice|1}+?{Extra|0}+d0}<0]]*2]]d6skl1cf<3, [[(?{Dice|1}+?{Extra|0})d1>1]]d6skh1cf<3}kh1]]}}" name="miscRoll"></button></div>
           <div class="sheet-col"><h3>Indulge in Vice</h3></div>
           <div class="sheet-col"><button type="roll" value="
           &{template:bitd} {{name=@{character_name}}} {{vice=@{vice}}} {{result=[[{[[[[{[[{@{insight}+?{Extra Dice|0},@{resolve}+?{Extra Dice|0},@{prowess}+?{Extra Dice|0}}kl1]]+d0}<0]]*2]]d6skl1, [[([[{@{insight}+?{Extra Dice|0},@{resolve}+?{Extra Dice|0},@{prowess}+?{Extra Dice|0}}kl1]]+d0)>1]]d6skh1}kh1]]}}" name="miscRoll"></button></div>
-
         </div>
 
       </div>
@@ -1064,25 +1062,25 @@
           </div>
         </div>
         <div class="sheet-claim-checkboxes sheet-claims-checks1">
-            <input type="checkbox" name="attr_claim1_claimed" class="sheet-claim-claimed1">
-            <input type="checkbox" name="attr_claim2_claimed" class="sheet-claim-claimed2">
-            <input type="checkbox" name="attr_claim3_claimed" class="sheet-claim-claimed3">
-            <input type="checkbox" name="attr_claim4_claimed" class="sheet-claim-claimed4">
-            <input type="checkbox" name="attr_claim5_claimed" class="sheet-claim-claimed5">
+            <input type="checkbox" name="attr_claim1_claimed" class="sheet-claim sheet-claim1"><span></span>
+            <input type="checkbox" name="attr_claim2_claimed" class="sheet-claim sheet-claim2"><span></span>
+            <input type="checkbox" name="attr_claim3_claimed" class="sheet-claim sheet-claim3"><span></span>
+            <input type="checkbox" name="attr_claim4_claimed" class="sheet-claim sheet-claim4"><span></span>
+            <input type="checkbox" name="attr_claim5_claimed" class="sheet-claim sheet-claim5"><span></span>
         </div>
         <div class="sheet-claim-checkboxes sheet-claims-checks2">
-            <input type="checkbox" name="attr_claim6_claimed" class="sheet-claim-claimed1">
-            <input type="checkbox" name="attr_claim7_claimed" class="sheet-claim-claimed2">
-            <input type="checkbox" name="attr_claim8_claimed" class="sheet-claim-claimed3">
-            <input type="checkbox" name="attr_claim9_claimed" class="sheet-claim-claimed4">
-            <input type="checkbox" name="attr_claim10_claimed" class="sheet-claim-claimed5">
+            <input type="checkbox" name="attr_claim6_claimed" class="sheet-claim sheet-claim1"><span></span>
+            <input type="checkbox" name="attr_claim7_claimed" class="sheet-claim sheet-claim2"><span></span>
+            <input type="checkbox" name="attr_claim8_claimed" class="sheet-claim sheet-claim3"><span></span>
+            <input type="checkbox" name="attr_claim9_claimed" class="sheet-claim sheet-claim4"><span></span>
+            <input type="checkbox" name="attr_claim10_claimed" class="sheet-claim sheet-claim5"><span></span>
         </div>
         <div class="sheet-claim-checkboxes sheet-claims-checks3">
-            <input type="checkbox" name="attr_claim11_claimed" class="sheet-claim-claimed1">
-            <input type="checkbox" name="attr_claim12_claimed" class="sheet-claim-claimed2">
-            <input type="checkbox" name="attr_claim13_claimed" class="sheet-claim-claimed3">
-            <input type="checkbox" name="attr_claim14_claimed" class="sheet-claim-claimed4">
-            <input type="checkbox" name="attr_claim15_claimed" class="sheet-claim-claimed5">
+            <input type="checkbox" name="attr_claim11_claimed" class="sheet-claim sheet-claim1"><span></span>
+            <input type="checkbox" name="attr_claim12_claimed" class="sheet-claim sheet-claim2"><span></span>
+            <input type="checkbox" name="attr_claim13_claimed" class="sheet-claim sheet-claim3"><span></span>
+            <input type="checkbox" name="attr_claim14_claimed" class="sheet-claim sheet-claim4"><span></span>
+            <input type="checkbox" name="attr_claim15_claimed" class="sheet-claim sheet-claim5"><span></span>
         </div>
       </div> <!-- Claims Map -->
 
@@ -1236,7 +1234,7 @@
                   Vault
                 </div>
                 <div class="sheet-row">
-                  <input type="checkbox" name="attr_lair_upgrade6a" class="sheet-lair-upgrade sheet-check-first"><span></span>
+                  <input type="checkbox" name="attr_lair_upgrade7a" class="sheet-lair-upgrade sheet-check-first sheet-check-last sheet-item-twobox"><span></span>
                   Workshop
                 </div>
               </div> <!-- Lair Upgrades -->
@@ -1262,15 +1260,15 @@
                   Pet/Special
                 </div>
                 <div class="sheet-row">
-                  <input type="checkbox" name="attr_quality_upgrade4a" class="sheet-quality-upgrade sheet-check-first sheet-check-last"><span></span>
+                  <input type="checkbox" name="attr_quality_upgrade6a" class="sheet-quality-upgrade sheet-check-first sheet-check-last"><span></span>
                   Supplies
                 </div>
                 <div class="sheet-row">
-                  <input type="checkbox" name="attr_quality_upgrade5a" class="sheet-quality-upgrade sheet-check-first sheet-check-last"><span></span>
+                  <input type="checkbox" name="attr_quality_upgrade7a" class="sheet-quality-upgrade sheet-check-first sheet-check-last"><span></span>
                   Tools
                 </div>
                 <div class="sheet-row">
-                  <input type="checkbox" name="attr_quality_upgrade6a" class="sheet-quality-upgrade sheet-check-first sheet-check-last"><span></span>
+                  <input type="checkbox" name="attr_quality_upgrade8a" class="sheet-quality-upgrade sheet-check-first sheet-check-last"><span></span>
                   Weapons
                 </div>
               </div>
@@ -1371,17 +1369,21 @@
         <fieldset class="repeating_cohort">
           <div class="sheet-row">
             <div class="sheet-col">
-              <label for="attr_cohort_quality" class="sheet-cohort-label">Quality</label>
+              <label for="attr_cohort_quality" class="sheet-cohort-quality-label">Quality</label>
               <input type="radio" class="sheet-cohort-quality sheet-leftradio sheet-zero" name="attr_cohort_quality" value="0" checked="checked" /><span></span>
               <input type="radio" class="sheet-cohort-quality sheet-leftradio" name="attr_cohort_quality" value="1"/><span></span>
               <input type="radio" class="sheet-cohort-quality sheet-leftradio" name="attr_cohort_quality" value="2"/><span></span>
               <input type="radio" class="sheet-cohort-quality sheet-leftradio" name="attr_cohort_quality" value="3"/><span></span>
               <input type="radio" class="sheet-cohort-quality sheet-leftradio" name="attr_cohort_quality" value="4"/><span></span>
-              <label for="attr_cohort_armor" class="sheet-cohort-label">Armor</label>
+              <label for="attr_cohort_armor" class="sheet-cohort-armor-label">Armor</label>
               <input type="checkbox" name="attr_cohort_armor" class="sheet-cohort-armor sheet-check-first"><span></span>
             </div>
           </div>
           <div class="sheet-row">
+            <div class="sheet-row">
+                <label for="attr_cohort_name" class="sheet-cohort-label">Name</label>
+                <input type="text" class="sheet-cohort-name" name="attr_cohort_name"/>
+            </div>
             <div class="sheet-row">
               <label for="attr_cohort_health" class="sheet-cohort-label">Health</label>
               <select class="sheet-cohort-health" name="attr_cohort_health">
@@ -1389,6 +1391,16 @@
                 <option>Weak</option>
                 <option>Impaired</option>
                 <option>Broken</option>
+              </select>
+              <label for="attr_cohort_type" class="sheet-cohort-label">Type</label>
+              <select class="sheet-cohort-type" name="attr_cohort_type">
+                <option></option>
+                <option>Adepts</option>
+                <option>Killers</option>
+                <option>Rooks</option>
+                <option>Rovers</option>
+                <option>Shadows</option>
+                <option>Thugs</option>
               </select>
             </div>
           </div>
@@ -1669,7 +1681,7 @@ Resist
         <td class="sheet-result" rowspan="3">{{result}}</td>  
       </tr>
       <tr>
-        <td class="sheet-note">by {{vice}}</td>
+            <th>through {{vice}}</th>
       </tr>
       <tr>
         <td class="sheet-fortune">and clears stress:</td>  
@@ -1693,4 +1705,3 @@ Resist
       
     </table>
 </rolltemplate>
-
