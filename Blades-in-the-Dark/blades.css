@@ -582,22 +582,22 @@ input.sheet-claim + span {
   border: solid thin #000000;
 }
 
-input.sheet-claim1 {left: 51px;}
-input.sheet-claim2 {left: 204px;}
-input.sheet-claim3 {left: 358px;}
-input.sheet-claim4 {left: 512px;}
-input.sheet-claim5 {left: 666px;}
+input.sheet-claim1 {left: 163px;}
+input.sheet-claim2 {left: 318px;}
+input.sheet-claim3 {left: 471px;}
+input.sheet-claim4 {left: 626px;}
+input.sheet-claim5 {left: 779px;}
+
+input.sheet-claim1 + span {left: 161px;}
+input.sheet-claim2 + span {left: 294px;}
+input.sheet-claim3 + span {left: 425px;}
+input.sheet-claim4 + span {left: 558px;}
+input.sheet-claim5 + span {left: 688px}
 
 .sheet-claimsection { margin-bottom: -70px;}
-.sheet-claims-checks1 { position: relative; top: -179px; }
+.sheet-claims-checks1 { position: relative; top: -180px; }
 .sheet-claims-checks2 { position: relative; top: -119px; }
-.sheet-claims-checks3 { position: relative; top: -61px; margin-bottom: -65px;}
-
-input.sheet-claim1 + span {left: 50px;}
-input.sheet-claim2 + span {left: 181px;}
-input.sheet-claim3 + span {left: 312px;}
-input.sheet-claim4 + span {left: 444px;}
-input.sheet-claim5 + span {left: 575px}
+.sheet-claims-checks3 { position: relative; top: -59px; margin-bottom: -65px;}
 
 
 input.sheet-claim:checked + span {
