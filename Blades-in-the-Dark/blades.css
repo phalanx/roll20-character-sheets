@@ -171,7 +171,6 @@ input[type=checkbox].sheet-check-first + span {
 }
 
 input[type=checkbox].sheet-check,
-input.sheet-friend-info,
 input.sheet-item-info,
 input.sheet-crew-ability-name,
 input.sheet-crew-upgrade-info,
@@ -191,8 +190,7 @@ input[type=checkbox].sheet-check-first:checked + span {
 
 input.sheet-armor:before, input.sheet-cohort-armor:before , input.sheet-coin:before,
 input.sheet-recovery:before, input.sheet-ability:before,
-input.sheet-friend:before, input.sheet-rival:before,
-input.sheet-item:before, input.sheet-carry:before, 
+input.sheet-item:before,
 input.sheet-turf:before, input.sheet-rep:before, input.sheet-clock:before {
   content: "";
   display: inline-block;
@@ -203,33 +201,61 @@ input.sheet-turf:before, input.sheet-rep:before, input.sheet-clock:before {
 
 input.sheet-armor:before, input.sheet-cohort-armor:before , input.sheet-coin:before,
 input.sheet-recovery:before, input.sheet-ability:before,
-input.sheet-item:before, input.sheet-carry:before, 
+input.sheet-item:before,
 input.sheet-turf:before, input.sheet-rep:before, input.sheet-clock:before {
-border: solid thin #000000;
+    border: solid thin #000000;
 }
 
-input[type=checkbox].sheet-friend + span {
-  border: solid thin #007700;
+input.sheet-friend-info{
+    margin-left:-5px;
+    margin-top: 3px;
 }
 
-input[type=checkbox].sheet-rival + span {
-  border: solid thin #770000;
+input.sheet-friend, input.sheet-rival, input.sheet-carry{
+    opacity: 0;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: -2px;
+    left: 8px;
+    margin: -9px;
+    cursor: pointer;
+    z-index: 1;
 }
 
-input[type=checkbox].sheet-friend:checked + span {
+input.sheet-friend + span, input.sheet-rival + span, input.sheet-carry + span {
+    width: 16px;
+    height: 16px;
+    content: "";
+    display: inline-block;
+    border: solid thin #000000;
+    background: #ffffff;
+    position: relative;
+    top: 5px;
+}
+
+input.sheet-friend + span{
+    border: solid thin #007700;
+}
+
+input.sheet-rival + span {
+    border: solid thin #770000;
+}
+
+input.sheet-friend:checked + span {
   background: #007700;
-}
-
-.sheet-clock-col {
- width: 350px;
 }
 
 input.sheet-friend:checked::before {
   background: #007700;
 }
 
-input[type=checkbox].sheet-rival:checked + span {
+input.sheet-rival:checked + span {
   background: #770000;
+}
+
+.sheet-clock-col {
+ width: 350px;
 }
 
 input[type=checkbox].sheet-item-onebox {
@@ -421,10 +447,12 @@ input.sheet-resolve {
 
 input.sheet-carry {
   margin-left: 10px;
+  width: 15px;
+  height: 15px;
 }
 
-input.sheet-carry + span {
-  margin-right: -16px;
+input.sheet-carry:checked + span {
+  background:#000000;
 }
 
 .sheet-bandolier {
@@ -589,6 +617,10 @@ input.sheet-leftradio[type="radio"]
     z-index: 1;
 }
 
+input.sheet-rightradio[type="radio"]{
+    left:32px;
+}
+
 /* Show fake radio buttons for left-fillable */
 input.sheet-leftradio[type="radio"] + span::before
 {
@@ -600,6 +632,10 @@ input.sheet-leftradio[type="radio"] + span::before
     background: #000000;
     position: relative;
     top: 5px;
+}
+
+input.sheet-rightradio[type="radio"] + span::before{
+    background: #ffffff;
 }
 
 input.sheet-leftradiolast[type="radio"] + span::before {
@@ -614,11 +650,16 @@ input.sheet-leftradio[type="radio"]:checked ~ input.sheet-leftradio[type="radio"
     background: #ffffff;
 }
 
+input.sheet-rightradio[type="radio"]:checked ~ input.sheet-rightradio[type="radio"] + span::before{
+    content: "";
+    background: #000000;
+}
 
 /* Empty radio - used for clearing the line*/
 input.sheet-zero:checked + span::before
 {
     opacity: 0;
+    left: 8px;
 }
 
 input.sheet-zero:hover + span::before
@@ -629,6 +670,11 @@ input.sheet-zero:hover + span::before
     text-indent: 0.5px;
     position:relative;
     top: 2px;
+}
+
+input.sheet-rightzero:hover + span::before
+{
+    opacity: 0;
 }
 
 input.sheet-zero + span::before
