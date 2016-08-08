@@ -1,4 +1,4 @@
-/* Blades in the Dark CSS v0.0.9 */
+/* Blades in the Dark CSS v0.0.10 */
 
 /* Header Formatting */
 .sheet-gametitleimg {float: left; }
@@ -107,7 +107,11 @@ input[type=radio].sheet-tab-playbook + span {
 }
 
 
-
+.sheet-playbookrow {
+  width: 850px;
+  min-width: 850px;
+  max-width: 850px;
+}
 
 /* Trauma Options */
 input.sheet-trauma-check {
@@ -197,22 +201,74 @@ input.sheet-check:checked + span,
 input.sheet-check-first:checked + span {
   background: black;
 }
+input.sheet-armor:before, input.sheet-cohort-armor:before , input.sheet-coin:before,
+input.sheet-recovery:before, input.sheet-ability:before,
+input.sheet-item:before,
+input.sheet-turf:before, input.sheet-rep:before, input.sheet-clock:before {
+  content: "";
+  display: inline-block;
+  background: #ffffff;
+  width: 15px;
+  height: 15px;
+}
 
-input.sheet-friend + span {
-  border: solid thin #007700;
+input.sheet-armor:before, input.sheet-cohort-armor:before , input.sheet-coin:before,
+input.sheet-recovery:before, input.sheet-ability:before,
+input.sheet-item:before,
+input.sheet-turf:before, input.sheet-rep:before, input.sheet-clock:before {
+    border: solid thin #000000;
+}
+
+input.sheet-friend-info{
+    margin-left: 0px;
+    margin-top: 3px;
+}
+
+input.sheet-friend, input.sheet-rival {
+    opacity: 0;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: -2px;
+    left: 8px;
+    margin: -9px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+input.sheet-friend + span, 
+input.sheet-rival + span, 
+input.sheet-carry + span {
+    width: 16px;
+    height: 16px;
+    content: "";
+    display: inline-block;
+    border: solid thin #000000;
+    background: #ffffff;
+    position: relative;
+    top: 5px;
+}
+
+input.sheet-friend + span{
+    border: solid thin #007700;
 }
 
 input.sheet-rival + span {
-  border: solid thin #770000;
+    border: solid thin #770000;
 }
 
 input.sheet-friend:checked + span {
   background: #007700;
 }
 
+input.sheet-friend:checked::before {
+  background: #007700;
+}
+
 input.sheet-rival:checked + span {
   background: #770000;
 }
+
 
 input[type=checkbox].sheet-item-onebox {
     /* Extra indentation so that we align nicely with the two-box and three-box
@@ -236,7 +292,7 @@ input.sheet-item-info {
 }
 
 .sheet-turfrow {
-  margin-bottom: -13px;
+  height: 24px;
 }
 
 .sheet-turfrow-outer {
@@ -246,6 +302,8 @@ input.sheet-item-info {
 label.sheet-turf-label, label.sheet-rep-label {
   width: 25px;
 }
+
+label.sheet-turf-label { margin-right: 20px; }
 
 label.sheet-wanted-label, label.sheet-coin-label {
   width: 40px;
@@ -262,7 +320,7 @@ label.sheet-heat-label, label.sheet-vault-label {
 }
 
 input.sheet-vault2.sheet-leftradio.sheet-zero {
-  margin-left: -18px;
+  margin-left: -9px;
 }
 
 label.sheet-tier-label, label.sheet-hold-label {
@@ -270,15 +328,6 @@ label.sheet-tier-label, label.sheet-hold-label {
   text-align: right;
   margin-left: 6px;
   margin-right: -13px;
-}
-
-input[type=checkbox].sheet-turf:checked + span {
-  background: darkred;
-  height: 36px;
-  position: relative;
-  top: 26px;
-  margin-top: -27px;
-  z-index: 2;
 }
 
 /* Character Tab */
@@ -412,6 +461,10 @@ input.sheet-resolve {
 
 .sheet-loads {
   margin-left: 10px;
+}
+
+.sheet-bandoliers {
+  display: inline-block;
 }
 
 input.sheet-carry {
@@ -650,21 +703,27 @@ input.sheet-down-connector-check[type="checkbox"]:checked + span::before
 }
 
 /* Left-fillable radio buttons - Hide actual radio */
-input.sheet-leftradio
+input.sheet-leftradio,
+input.sheet-rightradio
 {
     opacity: 0;
     width: 16px;
     height: 16px;
     position: relative;
-    top: -2px;
+    top: 0px; /* Changed to 0 from -2 on Firefox. Split the difference for Chrome? */
     left: 8px;
     margin: -9px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 3;
+}
+
+input.sheet-rightradio{
+    
 }
 
 /* Show fake radio buttons for left-fillable */
-input.sheet-leftradio + span::before
+input.sheet-leftradio + span::before,
+input.sheet-rightradio + span::before
 {
     width: 16px;
     height: 16px;
@@ -676,52 +735,72 @@ input.sheet-leftradio + span::before
     top: 5px;
 }
 
+input.sheet-rightradio[type="radio"] + span::before {
+    background: #ffffff;
+}
+
 input.sheet-leftradiolast[type="radio"] + span::before {
   margin-right: 0px;
 }
 
 /* Remove dot from all radios _after_ selected one */
 /* Ensure that your radio groups are encapsulated in a div, otherwise they will interfere with each other */
-input.sheet-leftradio[type="radio"]:checked ~ input.sheet-leftradio[type="radio"] + span::before
+input.sheet-leftradio[type="radio"]:checked ~ input.sheet-leftradio[type="radio"] + span::before,
 {    
-    content: "";
-    background: #ffffff;
+  content: "";
+  background: #ffffff;
 }
+
+input.sheet-rightradio[type="radio"]:checked + span::before,
+input.sheet-rightradio[type="radio"]:checked ~ input.sheet-rightradio[type="radio"] + span::before 
+{
+  content: "";
+  background: darkred; 
+  height: 40px;
+  top: 29px;
+  margin-top: -24px;
+  z-index: 2;
+}
+
+/*input.sheet-turf:checked + span {
+  background: darkred;
+  height: 36px;
+  position: relative;
+  top: 26px;
+  margin-top: -27px;  
+}*/
 
 
 /* Empty radio - used for clearing the line*/
-input.sheet-zero:checked + span::before
+input.sheet-zero:checked + span::before,
+input.sheet-rightzero:checked + span::before
 {
     opacity: 0;
+    left: 0px;
 }
 
-input.sheet-zero:hover + span::before
+input.sheet-zero:hover + span::before,
+input.sheet-rightzero:hover + span::before
 {
     opacity: 0.25;
     font-size: 12px;
     content: "✖";
     text-indent: 0.5px;
     position:relative;
-    top: 2px;
+    top: 1px;
 }
 
-input.sheet-zero + span::before
+input.sheet-zero + span::before,
+input.sheet-rightzero + span::before
 {
     opacity: 0;
     position: relative;
     top: 5px;
 }
 
-input[type=radio].sheet-radioindent {
-  margin-left: 11px;
-}
-
-input.sheet-bandolier {
-  margin-left: -27px;
-}
-
-.sheet-bandoliers {
-  display: inline-block;
+input[type=radio].sheet-radioindent,
+input[type=radio].sheet-radioindent + span {
+  margin-left: 5px;
 }
 
 /* Crew Upgrades */
@@ -813,7 +892,6 @@ textarea.sheet-cohort-notes {
 .sheet-freejobs {
   width: 340px;
   margin-bottom: 10px;
-  margin-right: 20px;
 }
 
 .sheet-faction-section {

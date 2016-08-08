@@ -198,7 +198,7 @@
       <!--Stash-->
       <div class="sheet-row">
         <div class="sheet-col"><label for="attr_stash" class="sheet-stash">Stash:</label></div>
-        <input type="number" name="attr_coin" class="sheet-stash" min="0" value="0">
+        <input type="number" name="attr_stash" class="sheet-stash" min="0" value="0">
       </div>
 
     </div>
@@ -221,7 +221,7 @@
 
   <br>
 
-    <div class="sheet-row">
+    <div class="sheet-row sheet-playbookrow">
 
       <!--Playbook & Abilities-->
       <div class="sheet-col">
@@ -438,11 +438,13 @@
         <!--Action Category: Resolve-->
         <div class="sheet-row">
           <div class="sheet-col"><h3>Resolve</h3></div>
-          <input type="number" name="attr_resolve_xp" class="sheet-prowess" min="0" max="6" value="0">
+          <input type="number" name="attr_resolve_xp" class="sheet-resolve" min="0" max="6" value="0">
           <input type="hidden" name="attr_resolve" value="[[ceil(@{attune}/4)+ceil(@{command}/4)+ceil(@{consort}/4)+ceil(@{sway}/4)]]">
           <div class="sheet-col"><h3>/ 6</h3></div>
           <div class="sheet-col"><button type="roll" value="&{template:bitd} {{name=@{character_name}}} {{resist=Resolve}} {{stress=[[6 - {[[[[{@{resolve}+d0}<0]]*2]]d6skl1, [[(@{resolve}+d0)>1]]d6skh1}kh1]]}}" name="resolveRoll"></button></div>
         </div>
+
+        <hr class="sheet-actions-hr">
 
         <!--Actions: Attune, Command, Consort, & Sway-->
         <div class="sheet-row">
@@ -513,23 +515,39 @@
             </div>
 
             <div class="sheet-row">
-              <input type="radio" name="attr_friend1" class="sheet-friend sheet-check-first"><span></span>
-              <input type="radio" name="attr_friend1" class="sheet-rival sheet-check"><span></span>
-              <input type="text" name="attr_friend_info1" class="sheet-friend-info">
+                <div class="sheet-col">
+                    <input type="radio" class="sheet-leftradio sheet-zero" name="attr_friend1" checked="checked" value="0" /><span></span>
+                    <input type="radio" name="attr_friend1" class="sheet-friend" value="1"><span></span>
+                    <input type="radio" name="attr_friend1" class="sheet-rival" value="2"><span></span>
+                </div>
+                <div class="sheet-col">
+                    <input type="text" name="attr_friend_info1" class="sheet-friend-info">
+                </div>
             </div>
 
             <div class="sheet-row">
-              <input type="radio" name="attr_friend2" class="sheet-friend sheet-check-first"><span></span>
-              <input type="radio" name="attr_friend2" class="sheet-rival sheet-check"><span></span>
-              <input type="text" name="attr_friend_info2" class="sheet-friend-info">
+                <div class="sheet-col">
+                    <input type="radio" class="sheet-leftradio sheet-zero" name="attr_friend2" checked="checked" value="0" /><span></span>
+                    <input type="radio" name="attr_friend2" class="sheet-friend" value="1"><span></span>
+                    <input type="radio" name="attr_friend2" class="sheet-rival" value="2"><span></span>
+                </div>
+                <div class="sheet-col">
+                    <input type="text" name="attr_friend_info2" class="sheet-friend-info">
+                </div>
             </div>
 
             <fieldset class="repeating_friend">
-              <div class="sheet-row">
-                <input type="radio" name="attr_friend" class="sheet-friend sheet-check-first"><span></span>
-                <input type="radio" name="attr_friend" class="sheet-rival sheet-check"><span></span>
-                <input type="text" name="attr_friend_info" class="sheet-friend-info">
-              </div>
+            <div class="sheet-row">
+                <div class="sheet-col">
+                    <input type="radio" class="sheet-leftradio sheet-zero" name="attr_friend" checked="checked" value="0"/><span></span>
+                    <input type="radio" name="attr_friend" class="sheet-friend" value="1"><span></span>
+                    <input type="radio" name="attr_friend" class="sheet-rival" value="2"><span></span>
+                </div>
+                <div class="sheet-col">
+                    <input type="text" name="attr_friend_info" class="sheet-friend-info">
+                </div>
+            </div>
+
             </fieldset>
 
           </div>
@@ -815,27 +833,30 @@
           <div class="sheet-row sheet-turfrow-outer">
             <div class="sheet-row sheet-turfrow">
               <div class="sheet-col"><label for="attr_crew_rep" class="sheet-turf-label">Turf</label></div>
-              <input type="checkbox" class="sheet-turf sheet-check-first" name="attr_crew_turf1" /><span></span>
-              <input type="checkbox" class="sheet-turf sheet-check" name="attr_crew_turf2" /><span></span>
-              <input type="checkbox" class="sheet-turf sheet-check" name="attr_crew_turf3" /><span></span>
-              <input type="checkbox" class="sheet-turf sheet-check" name="attr_crew_turf4" /><span></span>
-              <input type="checkbox" class="sheet-turf sheet-check" name="attr_crew_turf5" /><span></span>
-              <input type="checkbox" class="sheet-turf sheet-check" name="attr_crew_turf6" /><span></span>
-              <input type="checkbox" class="sheet-turf sheet-check" name="attr_crew_turf7" /><span></span>
-              <input type="checkbox" class="sheet-turf sheet-check" name="attr_crew_turf8" /><span></span>
-              <input type="checkbox" class="sheet-turf sheet-check" name="attr_crew_turf9" /><span></span>
+              <input type="radio" class="sheet-turf sheet-rightradio" name="attr_turf" value="9" /><span></span>
+              <input type="radio" class="sheet-turf sheet-rightradio" name="attr_turf" value="8" /><span></span>
+              <input type="radio" class="sheet-turf sheet-rightradio" name="attr_turf" value="7" /><span></span>
+              <input type="radio" class="sheet-turf sheet-rightradio" name="attr_turf" value="6" /><span></span>
+              <input type="radio" class="sheet-turf sheet-rightradio" name="attr_turf" value="5" /><span></span>
+              <input type="radio" class="sheet-turf sheet-rightradio" name="attr_turf" value="4" /><span></span>
+              <input type="radio" class="sheet-turf sheet-rightradio" name="attr_turf" value="3" /><span></span>
+              <input type="radio" class="sheet-turf sheet-rightradio" name="attr_turf" value="2" /><span></span>
+              <input type="radio" class="sheet-turf sheet-rightradio" name="attr_turf" value="1" /><span></span>            
+              <input type="radio" class="sheet-turf sheet-rightradio sheet-rightzero"  name="attr_turf" value="0" checked="checked" /><span></span>
+
             </div>
             <div class="sheet-row">
               <div class="sheet-col sheet-rep"><label for="attr_crew_rep" class="sheet-rep-label">Rep</label></div>
-              <input type="checkbox" class="sheet-rep sheet-check-first" name="attr_crew_rep1" /><span></span>
-              <input type="checkbox" class="sheet-rep sheet-check" name="attr_crew_rep2" /><span></span>
-              <input type="checkbox" class="sheet-rep sheet-check" name="attr_crew_rep3" /><span></span>
-              <input type="checkbox" class="sheet-rep sheet-check" name="attr_crew_rep4" /><span></span>
-              <input type="checkbox" class="sheet-rep sheet-check" name="attr_crew_rep5" /><span></span>
-              <input type="checkbox" class="sheet-rep sheet-check" name="attr_crew_rep6" /><span></span>
-              <input type="checkbox" class="sheet-rep sheet-check" name="attr_crew_rep7" /><span></span>
-              <input type="checkbox" class="sheet-rep sheet-check" name="attr_crew_rep8" /><span></span>
-              <input type="checkbox" class="sheet-rep sheet-check" name="attr_crew_rep9" /><span></span>
+                <input type="radio" class="sheet-clock sheet-leftradio sheet-zero" name="attr_rep" value="0" checked="checked" /><span></span>
+                <input type="radio" class="sheet-clock sheet-leftradio" name="attr_rep" value="1"/><span></span>
+                <input type="radio" class="sheet-clock sheet-leftradio" name="attr_rep" value="2"/><span></span>
+                <input type="radio" class="sheet-clock sheet-leftradio" name="attr_rep" value="3"/><span></span>
+                <input type="radio" class="sheet-clock sheet-leftradio" name="attr_rep" value="4"/><span></span>
+                <input type="radio" class="sheet-clock sheet-leftradio" name="attr_rep" value="5"/><span></span>
+                <input type="radio" class="sheet-clock sheet-leftradio" name="attr_rep" value="6"/><span></span>
+                <input type="radio" class="sheet-clock sheet-leftradio" name="attr_rep" value="7"/><span></span>
+                <input type="radio" class="sheet-clock sheet-leftradio" name="attr_rep" value="8"/><span></span>
+                <input type="radio" class="sheet-clock sheet-leftradio" name="attr_rep" value="9"/><span></span>
               <div class="sheet-col"><label for="attr_crew_rep"></label></div>
             </div>
           </div> <!-- Rep, Turf -->
@@ -1344,18 +1365,26 @@
         </div>
 
         <div class="sheet-row">
-          <input type="radio" name="attr_contact_friend1" class="sheet-friend sheet-check-first"><span></span>
-          <input type="radio" name="attr_contact_friend1" class="sheet-rival sheet-check"><span></span>
-          <input type="text" name="attr_contact_friend_info1" class="sheet-contact-friend-info">
+            <div class="sheet-col">
+                <input type="radio" name="attr_contact1" class="sheet-leftradio sheet-zero"><span></span>
+                <input type="radio" name="attr_contact1" class="sheet-friend"><span></span>
+                <input type="radio" name="attr_contact1" class="sheet-rival"><span></span>
+            </div>
+            <div class="sheet-col">
+                <input type="text" name="attr_contact_friend_info1" class="sheet-friend-info">
+            </div>
 
         </div>
 
         <div class="sheet-row">
           <fieldset class="repeating_contact">
-            <div class="sheet-row">
-              <input type="radio" name="attr_contact_friend" class="sheet-friend sheet-check-first"><span></span>
-              <input type="radio" name="attr_contact_friend" class="sheet-rival sheet-check"><span></span>
-              <input type="text" name="attr_contact_friend_info" class="sheet-contact-friend-info">
+            <div class="sheet-col">
+                <input type="radio" name="attr_contact" class="sheet-leftradio sheet-zero"><span></span>
+                <input type="radio" name="attr_contact" class="sheet-friend"><span></span>
+                <input type="radio" name="attr_contact" class="sheet-rival"><span></span>
+            </div>
+            <div class="sheet-col">
+                <input type="text" name="attr_contact_friend_info" class="sheet-friend-info">
             </div>
           </fieldset>
         </div>
