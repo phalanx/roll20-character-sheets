@@ -21,16 +21,16 @@ Report any problems, suggestions or features by sending a private message on Rol
 * Calculate load based on items checked and display remaining empty item slots.  So if you select your load as Heavy (6), we should display a total (zero) and remaining (6).  When you check something that has zero load, it doesn't do anything.  When you check Items or Armor, it adds to your current load, compares it to your selected load, and if you're full or overloaded, maybe it turns red.  This may require a sheet worker to accomplish.
 
 Pending
- * sheet workers to convert Friends, Contacts, Recovery, Turf, and Rep to radio buttons
+ * sheet workers to convert Friends, Recovery to radio buttons
  * Bandolier label and leftradio spacing.
- * Fourth Turf box overlaps oddly on fifth Rep box.
+ * Turf boxes overlap oddly on Rep boxes sometimes.
 
 
 ## Changelog
 
 ### 0.0.10
-* Added display formatting for Turf to overlay on Rep nicely. Converted Rep to left-fillable radios and Rep to right-fillable radios.
-* Converted some checkboxes to radios - Load, Friends, Contacts, Recovery, Bandoliers, added clearable checkboxes for Friends and Contacts
+* Added display formatting for Turf to overlay on Rep nicely. Converted Rep to left-fillable radios and Turf to right-fillable radios.
+* Converted some checkboxes to radios - Turf, Rep, Load, Friends, Contacts, Recovery, Bandoliers, added clearable checkboxes for Friends and Contacts; included sheet workers to transfer checkbox values to radios for Turf, Rep, Contacts, 
 * Improved layout for Clock tab
 * Format claims checkboxes to match the rest of the sheet
 * moved claims checkboxes back to the right side to accommodate text better
