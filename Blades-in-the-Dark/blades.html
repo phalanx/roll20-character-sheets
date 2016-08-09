@@ -1841,45 +1841,21 @@ on("sheet:opened", function() {
         getAttrs([friendly, rival], function (values) {
           //extract the unique id from the first key passed in
           thisid = Object.keys(values)[0].substring(18,38);
-          console.log("checking " + thisid + "----------------------")
-          
-          // echo our values out to console so I can see what we should be setting
-          str = JSON.stringify(values, null, 4);
-          console.log(str)
 
           // re-generate our values so we can check them
           thisfriendly = "repeating_contact_" + thisid + "_contact_friend";
           thisrival = "repeating_contact_" + thisid + "_contact_rival";
           
-          // inspecting the character sheet shows the attribute as 
-          // "attr_-KOjRObavXT3f_QGVoM5_repeating_contact_contact"
-          // but I'm not sure where that _QGVoM5_ comes from.  It's
-          // certainly not what we're seeing in the console when we
-          // log the id strings
-
-          // I've tried a couple of different versions here but can't seem
-          // to find the correct string for setAttrs
-          // radio = thisid + "_repeating_contact_contact";
           radio = "repeating_contact_" + thisid + "_contact";
 
-          console.log("setting: " + radio);
-
-          // We're correctly detecting whether the old checkbox is checked
-          // but we aren't correctly setting the new radio.
           if (values[thisrival] == "on") { 
             console.log("rival is set - setting value to 2");
-            // ZZZZZ Here's our problem.
-            setAttrs({[radio]: 2,}); 
+            setAttrs({[radio]: 2, [thisrival]: 0});
+            
           } else if (values[thisfriendly] == "on") {
             console.log("friendly is set - setting value to 1");
-            // ZZZZZ Here's our problem.
-            setAttrs({[radio]: 1,}); 
-          } else { 
-            console.log("neither is set - setting value to 0");
-            // ZZZZZ Here's our problem.
-            setAttrs({[radio]: 0,}); 
+            setAttrs({[radio]: 1, [thisfriendly]: 0}); 
           }
-          console.log("done " + thisid + "----------------------");
         })
         
         
