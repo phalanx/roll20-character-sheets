@@ -1366,9 +1366,9 @@
 
         <div class="sheet-row">
             <div class="sheet-col">
-                <input type="radio" name="attr_contact1" class="sheet-leftradio sheet-zero"><span></span>
-                <input type="radio" name="attr_contact1" class="sheet-friend"><span></span>
-                <input type="radio" name="attr_contact1" class="sheet-rival"><span></span>
+                <input type="radio" name="attr_contact1" value=0 class="sheet-leftradio sheet-zero"><span></span>
+                <input type="radio" name="attr_contact1" value=1 class="sheet-friend"><span></span>
+                <input type="radio" name="attr_contact1" value=2 class="sheet-rival"><span></span>
             </div>
             <div class="sheet-col">
                 <input type="text" name="attr_contact_friend_info1" class="sheet-friend-info">
@@ -1379,9 +1379,9 @@
         <div class="sheet-row">
           <fieldset class="repeating_contact">
             <div class="sheet-col">
-                <input type="radio" name="attr_contact" class="sheet-leftradio sheet-zero"><span></span>
-                <input type="radio" name="attr_contact" class="sheet-friend"><span></span>
-                <input type="radio" name="attr_contact" class="sheet-rival"><span></span>
+                <input type="radio" name="attr_contact" value=0 class="sheet-leftradio sheet-zero"><span></span>
+                <input type="radio" name="attr_contact" value=1 class="sheet-friend"><span></span>
+                <input type="radio" name="attr_contact" value=2 class="sheet-rival"><span></span>
             </div>
             <div class="sheet-col">
                 <input type="text" name="attr_contact_friend_info" class="sheet-friend-info">
@@ -1734,3 +1734,163 @@ Resist
       
     </table>
 </rolltemplate>
+
+<!-- Sheet Workers -->
+<script type="text/worker">
+on("sheet:opened", function() {
+  
+  // Correct old-skool Rep checkboxes to new-skool Rep radios
+  console.log("checking Rep")
+  getAttrs(["crew_rep1",
+            "crew_rep2",
+            "crew_rep3",
+            "crew_rep4",
+            "crew_rep5",
+            "crew_rep6",
+            "crew_rep7",
+            "crew_rep8",
+            "crew_rep9"],function(crewvalues) {
+  
+    var crewtotal;
+    crewtotal = 0;
+
+    for(i in crewvalues) {
+      if (crewvalues[i] == "on") {
+        crewtotal = crewtotal + 1;
+      };
+    };
+    
+    if (crewtotal > 0) {
+      console.log("changing old Rep checkboxes to left-fillable radio:", crewtotal);
+      setAttrs({rep: crewtotal,
+                crew_rep1: 0,
+                crew_rep2: 0,
+                crew_rep3: 0,
+                crew_rep4: 0,
+                crew_rep5: 0,
+                crew_rep6: 0,
+                crew_rep7: 0,
+                crew_rep8: 0,
+                crew_rep9: 0,});
+    }
+    
+  });
+
+  // Correct old-skool Turf checkboxes to new-skool Turf radios
+  console.log("checking Turf")
+  getAttrs(["crew_turf1",
+            "crew_turf2",
+            "crew_turf3",
+            "crew_turf4",
+            "crew_turf5",
+            "crew_turf6",
+            "crew_turf7",
+            "crew_turf8",
+            "crew_turf9"],function(crewvalues) {
+  
+    var crewtotal;
+    crewtotal = 0;
+
+    for(i in crewvalues) {
+      if (crewvalues[i] == "on") {
+        crewtotal = crewtotal + 1;
+      };
+    };
+
+    if (crewtotal > 0) {
+      console.log("changing old Turf checkboxes to left-fillable radio:", crewtotal);
+      setAttrs({turf: crewtotal,
+                crew_turf1: 0,
+                crew_turf2: 0,
+                crew_turf3: 0,
+                crew_turf4: 0,
+                crew_turf5: 0,
+                crew_turf6: 0,
+                crew_turf7: 0,
+                crew_turf8: 0,
+                crew_turf9: 0,});
+    }
+    
+  });
+
+  // Convert the single provided crew contact's checkboxes to radios
+  console.log("checking nonrepeating crew contact");
+  getAttrs(["contact_friend1",
+            "contact_rival1"],function(crewvalues) {
+    if (crewvalues["contact_friend1"] == "on") {
+        console.log("changing friendly contact checkbox to radio");
+        setAttrs({contact1: 1, contact_friend1: 0});
+    } else if (crewvalues["contact_rival1"] == "on") {
+        console.log("changing rival contact checkbox to radio");
+        setAttrs({contact1: 2, contact_rival1: 0});
+    }
+  });
+
+  // Convert the repeating crew contact's checkboxes to radios
+  console.log("checking repeating crew contacts");
+  getSectionIDs("repeating_contact", function(idarray) { 
+
+    if (idarray.length > 0) {
+  
+      for (var i=0; i< idarray.length; i++) {
+        
+        //generate the names of the attributes we need to check
+        friendly = "repeating_contact_" + idarray[i] + "_contact_friend";
+        rival = "repeating_contact_" + idarray[i] + "_contact_rival";
+
+        getAttrs([friendly, rival], function (values) {
+          //extract the unique id from the first key passed in
+          thisid = Object.keys(values)[0].substring(18,38);
+          console.log("checking " + thisid + "----------------------")
+          
+          // echo our values out to console so I can see what we should be setting
+          str = JSON.stringify(values, null, 4);
+          console.log(str)
+
+          // re-generate our values so we can check them
+          thisfriendly = "repeating_contact_" + thisid + "_contact_friend";
+          thisrival = "repeating_contact_" + thisid + "_contact_rival";
+          
+          // inspecting the character sheet shows the attribute as 
+          // "attr_-KOjRObavXT3f_QGVoM5_repeating_contact_contact"
+          // but I'm not sure where that _QGVoM5_ comes from.  It's
+          // certainly not what we're seeing in the console when we
+          // log the id strings
+
+          // I've tried a couple of different versions here but can't seem
+          // to find the correct string for setAttrs
+          // radio = thisid + "_repeating_contact_contact";
+          radio = "repeating_contact_" + thisid + "_contact";
+
+          console.log("setting: " + radio);
+
+          // We're correctly detecting whether the old checkbox is checked
+          // but we aren't correctly setting the new radio.
+          if (values[thisrival] == "on") { 
+            console.log("rival is set - setting value to 2");
+            // ZZZZZ Here's our problem.
+            setAttrs({[radio]: 2,}); 
+          } else if (values[thisfriendly] == "on") {
+            console.log("friendly is set - setting value to 1");
+            // ZZZZZ Here's our problem.
+            setAttrs({[radio]: 1,}); 
+          } else { 
+            console.log("neither is set - setting value to 0");
+            // ZZZZZ Here's our problem.
+            setAttrs({[radio]: 0,}); 
+          }
+          console.log("done " + thisid + "----------------------");
+        })
+        
+        
+      
+      }
+    
+    }
+
+  });
+
+
+});
+
+</script>

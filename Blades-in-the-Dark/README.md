@@ -17,18 +17,26 @@ Report any problems, suggestions or features by sending a private message on Rol
 * Display the Clocks tab for Crew sheets as well as Character sheets
 * Add a min-width to rows that shouldn't be wrapped when the sheet's width is narrow.
 * Add a repeatable Item field for items that have no load?
-* Friends and Contacts are now a radio button, but there's no option to UNCHECK them entirely once they're checked.  We need a sheet-zero checkbox there as well.  That's going to push it to the right a bit, but there's plenty of space in those columns to move right 10 pixels or so.
 * Multibox Items (2-box and 3-box) should probably work like a single checkbox rather than separate checkboxes.  
 * Calculate load based on items checked and display remaining empty item slots.  So if you select your load as Heavy (6), we should display a total (zero) and remaining (6).  When you check something that has zero load, it doesn't do anything.  When you check Items or Armor, it adds to your current load, compares it to your selected load, and if you're full or overloaded, maybe it turns red.  This may require a sheet worker to accomplish.
+
+Pending
+ * sheet workers to convert Friends, Contacts, Recovery, Turf, and Rep to radio buttons
+ * Bandolier label and leftradio spacing.
+ * Fourth Turf box overlaps oddly on fifth Rep box.
+
 
 ## Changelog
 
 ### 0.0.10
-* Added display formatting for Turf to overlay on Rep nicely.
-* Converted some checkboxes to radios - Load, Friends, Contacts, Recovery, Bandoliers
+* Added display formatting for Turf to overlay on Rep nicely. Converted Rep to left-fillable radios and Rep to right-fillable radios.
+* Converted some checkboxes to radios - Load, Friends, Contacts, Recovery, Bandoliers, added clearable checkboxes for Friends and Contacts
 * Improved layout for Clock tab
 * Format claims checkboxes to match the rest of the sheet
+* moved claims checkboxes back to the right side to accommodate text better
 * Layout and alignment tweaks
+* Corrected missing horizontal rule in Resolve skills
+* Set a fixed width on the playbook page to prevent skills wrapping under special abilities
 
 ### 0.0.9
 * Added Cohort Name and Type dropdown
