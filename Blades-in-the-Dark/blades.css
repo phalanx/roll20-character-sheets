@@ -1,10 +1,60 @@
+/* Blades in the Dark CSS v0.0.10 */
+
 /* Header Formatting */
 .sheet-gametitleimg {float: left; }
 .sheet-alignright {text-align: right; }
-.sheet-typeselector {}
 .sheet-aligncenter {text-align: center;}
 
-/* Tabs for switching between different content sections */
+.sheet-version {
+  text-align: left;
+  font-size: 10px;
+}
+
+
+/* Char/Crew Button - Select between sheet modes*/
+input.sheet-typeselector {
+  opacity: 0;
+  width: 100px;
+  height: 20px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+input.sheet-typeselector + span {
+  border: solid 1px #a7a7a7;
+  border-bottom-color: #ffffff;
+  text-align: center;
+  display: inline-block;
+
+  background: #cccccc;
+  color: #000000;
+
+  width: 100px;
+  height: 20px;
+  font-size: 18px;
+}
+
+input.sheet-typeselector,
+input.sheet-typeselector + span {
+    position: absolute;
+    right: 0;
+}
+
+input.sheet-typeselector + span::before {
+  content: "Character";
+}
+
+input.sheet-typeselector:checked + span::before {
+  content: "Crew";
+}
+
+div.sheet-type-crew { display: none; }  /* Default - don't display crew */
+input.sheet-typeselector:checked ~ div.sheet-type-crew { display: block;}
+input.sheet-typeselector:checked ~ div.sheet-type-character { display: none; }
+
+
+/* Content Tabs - Char/Playbook/Clock and Crew/Faction */
 .sheet-tab-content {
   display: none;
 }
@@ -57,47 +107,10 @@ input[type=radio].sheet-tab-playbook + span {
 }
 
 
-/* Char/Crew Button Functionality */
-div.sheet-type-crew { display: none; }
-input.sheet-typeselector:checked ~ div.sheet-type-crew { display: block;}
-input.sheet-typeselector:checked ~ div.sheet-type-character { display: none; }
-
-/* Char/Crew Button Appearance */
-input.sheet-typeselector {
-  opacity: 0;
-  width: 100px;
-  height: 20px;
-  margin-bottom: 5px;
-  cursor: pointer;
-  z-index: 1;
-}
-
-input.sheet-typeselector + span {
-  border: solid 1px #a7a7a7;
-  border-bottom-color: #ffffff;
-  text-align: center;
-  display: inline-block;
-
-  background: #cccccc;
-  color: #000000;
-
-  width: 100px;
-  height: 20px;
-  font-size: 18px;
-}
-
-input.sheet-typeselector,
-input.sheet-typeselector + span {
-    position: absolute;
-    right: 0;
-}
-
-input.sheet-typeselector + span::before {
-  content: "Character";
-}
-
-input.sheet-typeselector:checked + span::before {
-  content: "Crew";
+.sheet-playbookrow {
+  width: 850px;
+  min-width: 850px;
+  max-width: 850px;
 }
 
 /* Trauma Options */
@@ -143,21 +156,21 @@ input.sheet-trauma-check + span {
     left: 0;
 }
 
-/* Other Options */
-input[type=checkbox].sheet-check,
-input[type=checkbox].sheet-check-first {
+/* Custom formatting for checkboxes and radios */
+input.sheet-check,
+input.sheet-check-first {
   display: inline-block;
   width: 16px;
   height: 16px;
   cursor: pointer;
-  z-index: 2;
+  z-index: 3;
   opacity: 1;
   position: relative;
   opacity: 0;
 }
 
-input[type=checkbox].sheet-check + span,
-input[type=checkbox].sheet-check-first + span {
+input.sheet-check + span,
+input.sheet-check-first + span {
   display: inline-block;
   background: #ffffff;
   background: white;
@@ -170,7 +183,8 @@ input[type=checkbox].sheet-check-first + span {
   border: solid thin #000000;
 }
 
-input[type=checkbox].sheet-check,
+input.sheet-check,
+input.sheet-friend-info,
 input.sheet-item-info,
 input.sheet-crew-ability-name,
 input.sheet-crew-upgrade-info,
@@ -183,11 +197,10 @@ input.sheet-contact-friend-info
     margin-right: -16px;
 }
 
-input[type=checkbox].sheet-check:checked + span,
-input[type=checkbox].sheet-check-first:checked + span {
+input.sheet-check:checked + span,
+input.sheet-check-first:checked + span {
   background: black;
 }
-
 input.sheet-armor:before, input.sheet-cohort-armor:before , input.sheet-coin:before,
 input.sheet-recovery:before, input.sheet-ability:before,
 input.sheet-item:before,
@@ -207,11 +220,11 @@ input.sheet-turf:before, input.sheet-rep:before, input.sheet-clock:before {
 }
 
 input.sheet-friend-info{
-    margin-left:-5px;
+    margin-left: 0px;
     margin-top: 3px;
 }
 
-input.sheet-friend, input.sheet-rival, input.sheet-carry{
+input.sheet-friend, input.sheet-rival {
     opacity: 0;
     width: 16px;
     height: 16px;
@@ -220,10 +233,12 @@ input.sheet-friend, input.sheet-rival, input.sheet-carry{
     left: 8px;
     margin: -9px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
 }
 
-input.sheet-friend + span, input.sheet-rival + span, input.sheet-carry + span {
+input.sheet-friend + span, 
+input.sheet-rival + span, 
+input.sheet-carry + span {
     width: 16px;
     height: 16px;
     content: "";
@@ -254,21 +269,22 @@ input.sheet-rival:checked + span {
   background: #770000;
 }
 
-.sheet-clock-col {
- width: 350px;
-}
 
 input[type=checkbox].sheet-item-onebox {
     /* Extra indentation so that we align nicely with the two-box and three-box
     items below*/
-    margin-left: 42px;
+    margin-left: 45px;
 }
 
 input[type=checkbox].sheet-item-twobox {
     /* Extra indentation so that we align nicely with the two-box and three-box
     items below*/
-    margin-left: 21px;
+    margin-left: 23px;
 }
+
+
+
+/* Positional styling for alignment and layout */
 
 input.sheet-item-info {
     width: 155px;
@@ -276,7 +292,7 @@ input.sheet-item-info {
 }
 
 .sheet-turfrow {
-  margin-bottom: -13px;
+  height: 24px;
 }
 
 .sheet-turfrow-outer {
@@ -286,6 +302,8 @@ input.sheet-item-info {
 label.sheet-turf-label, label.sheet-rep-label {
   width: 25px;
 }
+
+label.sheet-turf-label { margin-right: 20px; }
 
 label.sheet-wanted-label, label.sheet-coin-label {
   width: 40px;
@@ -301,6 +319,10 @@ label.sheet-heat-label, label.sheet-vault-label {
   margin-right: -27px;
 }
 
+input.sheet-vault2.sheet-leftradio.sheet-zero {
+  margin-left: -9px;
+}
+
 label.sheet-tier-label, label.sheet-hold-label {
   width: 20px;
   text-align: right;
@@ -313,10 +335,6 @@ h1 {
   text-align: center;
 }
 
-.sheet-version {
-  text-align: left;
-  font-size: 10px;
-}
 
 label {
   line-height: 25px;
@@ -374,7 +392,7 @@ label.sheet-stash {
 }
 
 label.sheet-heavy {
-  margin-left: 18px;
+  margin-left: -1px;
 }
 
 input.sheet-spec {
@@ -445,20 +463,52 @@ input.sheet-resolve {
   margin-left: 10px;
 }
 
+.sheet-bandoliers {
+  display: inline-block;
+}
+
 input.sheet-carry {
   margin-left: 10px;
-  width: 15px;
-  height: 15px;
 }
 
-input.sheet-carry:checked + span {
-  background:#000000;
+input.sheet-carry + span {
+  margin-right: -16px;
 }
 
-.sheet-bandolier {
-  margin-left: 15px;
+.sheet-clock4desc,
+.sheet-clock6desc {
+  width: 280px;
+  margin-right: -17px;
+  margin-bottom: 30px;
 }
 
+.sheet-clockcol {
+  margin-right: 25px;
+}
+
+
+input.sheet-clockdesc {
+  width: 280px;
+}
+
+.sheet-clock4tick {
+  width: 100px;
+}
+
+.sheet-clock6tick {
+  width: 150px;
+}
+
+.sheet-clock4tick hr,
+.sheet-clock6tick hr {
+  opacity: 0;
+  margin: 0;
+}
+
+.repeating_4clocks,
+.repeating_8clocks {
+  margin-right: 20px;
+}
 
 
 /* Crew Sheet Field Layout And Formatting */
@@ -475,7 +525,9 @@ input.sheet-crew-lair {
 
 .sheet-map-row-claims {
     margin-left: 51px;
-    width: 800px;
+    width: 745px;
+    min-width: 745px;
+    max-width: 745px;
 }
 
 .sheet-map-row-claims textarea {
@@ -499,7 +551,9 @@ input.sheet-crew-lair {
 .sheet-connector-row {
   margin-bottom: -20px;
   margin-left: 48px;
-  width: 800px;
+  width: 762px;
+  min-width: 762px;
+  max-width: 762px;
 }
 
 
@@ -556,6 +610,52 @@ input.sheet-connector-check[type="checkbox"]:checked + span::before
   margin-top: 15px;
 }
 
+.sheet-claim-checkboxes {
+    position: relative;
+}
+
+input.sheet-claim {
+  position: absolute;
+  z-index: 3;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  opacity: 0;
+}
+
+input.sheet-claim + span {
+  display: inline-block;
+  background: #ffffff;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  left: -16px;
+  top: -3px;
+  z-index: 1;
+  border: solid thin #000000;
+}
+
+input.sheet-claim1 {left: 163px;}
+input.sheet-claim2 {left: 318px;}
+input.sheet-claim3 {left: 471px;}
+input.sheet-claim4 {left: 626px;}
+input.sheet-claim5 {left: 779px;}
+
+input.sheet-claim1 + span {left: 161px;}
+input.sheet-claim2 + span {left: 294px;}
+input.sheet-claim3 + span {left: 425px;}
+input.sheet-claim4 + span {left: 558px;}
+input.sheet-claim5 + span {left: 688px}
+
+.sheet-claimsection { margin-bottom: -70px;}
+.sheet-claims-checks1 { position: relative; top: -180px; }
+.sheet-claims-checks2 { position: relative; top: -119px; }
+.sheet-claims-checks3 { position: relative; top: -59px; margin-bottom: -65px;}
+
+
+input.sheet-claim:checked + span {
+  background: black;
+}
 
 /* Hide down-connector checkbox */
 input.sheet-down-connector-check[type="checkbox"]
@@ -568,7 +668,6 @@ input.sheet-down-connector-check[type="checkbox"]
     height: 36px;
     top: -12px;
     left: 8px;
-
 }
 
 
@@ -604,25 +703,27 @@ input.sheet-down-connector-check[type="checkbox"]:checked + span::before
 }
 
 /* Left-fillable radio buttons - Hide actual radio */
-input.sheet-leftradio[type="radio"]
+input.sheet-leftradio,
+input.sheet-rightradio
 {
     opacity: 0;
     width: 16px;
     height: 16px;
     position: relative;
-    top: -2px;
+    top: 0px; /* Changed to 0 from -2 on Firefox. Split the difference for Chrome? */
     left: 8px;
     margin: -9px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 3;
 }
 
-input.sheet-rightradio[type="radio"]{
-    left:32px;
+input.sheet-rightradio{
+    
 }
 
 /* Show fake radio buttons for left-fillable */
-input.sheet-leftradio[type="radio"] + span::before
+input.sheet-leftradio + span::before,
+input.sheet-rightradio + span::before
 {
     width: 16px;
     height: 16px;
@@ -634,7 +735,7 @@ input.sheet-leftradio[type="radio"] + span::before
     top: 5px;
 }
 
-input.sheet-rightradio[type="radio"] + span::before{
+input.sheet-rightradio[type="radio"] + span::before {
     background: #ffffff;
 }
 
@@ -644,40 +745,53 @@ input.sheet-leftradiolast[type="radio"] + span::before {
 
 /* Remove dot from all radios _after_ selected one */
 /* Ensure that your radio groups are encapsulated in a div, otherwise they will interfere with each other */
-input.sheet-leftradio[type="radio"]:checked ~ input.sheet-leftradio[type="radio"] + span::before
+input.sheet-leftradio[type="radio"]:checked ~ input.sheet-leftradio[type="radio"] + span::before,
 {    
-    content: "";
-    background: #ffffff;
+  content: "";
+  background: #ffffff;
 }
 
-input.sheet-rightradio[type="radio"]:checked ~ input.sheet-rightradio[type="radio"] + span::before{
-    content: "";
-    background: #000000;
+input.sheet-rightradio[type="radio"]:checked + span::before,
+input.sheet-rightradio[type="radio"]:checked ~ input.sheet-rightradio[type="radio"] + span::before 
+{
+  content: "";
+  background: darkred; 
+  height: 40px;
+  top: 29px;
+  margin-top: -24px;
+  z-index: 2;
 }
+
+/*input.sheet-turf:checked + span {
+  background: darkred;
+  height: 36px;
+  position: relative;
+  top: 26px;
+  margin-top: -27px;  
+}*/
+
 
 /* Empty radio - used for clearing the line*/
-input.sheet-zero:checked + span::before
+input.sheet-zero:checked + span::before,
+input.sheet-rightzero:checked + span::before
 {
     opacity: 0;
-    left: 8px;
+    left: 0px;
 }
 
-input.sheet-zero:hover + span::before
+input.sheet-zero:hover + span::before,
+input.sheet-rightzero:hover + span::before
 {
     opacity: 0.25;
     font-size: 12px;
     content: "✖";
     text-indent: 0.5px;
     position:relative;
-    top: 2px;
+    top: 1px;
 }
 
-input.sheet-rightzero:hover + span::before
-{
-    opacity: 0;
-}
-
-input.sheet-zero + span::before
+input.sheet-zero + span::before,
+input.sheet-rightzero + span::before
 {
     opacity: 0;
     position: relative;
@@ -696,7 +810,7 @@ input[type=radio].sheet-radioindent + span {
 
 .sheet-crew-upgrade-info {
     width: 160px;
-    margin-right: 15px;
+    margin-right: 5px;
 }
 
 .sheet-linkedbox + span::after {
@@ -716,6 +830,12 @@ input[type=radio].sheet-radioindent + span {
     width: 680px;
 }
 
+.sheet-crew-advancement-label {
+  display: inline;
+  margin-right: -11px;
+}
+
+
 .sheet-advancement-descr {
     width: 335px;
 }
@@ -725,24 +845,40 @@ input[type=radio].sheet-radioindent + span {
     margin-right: 15px;
 }
 
-textarea.sheet-cohort-notes {
-  width: 298px;
-  height: 50px;
+
+/* Cohort Section Styling and Layout */
+.sheet-cohort-name {
+  width: 198px;
+  margin: 5px;
 }
 
-.sheet-cohort-label, .sheet-crew-advancement-label {
+.sheet-cohort-label {
   display: inline;
   margin-right: -11px;
 }
 
-select.sheet-cohort-health {
-  width: 100px;
+.sheet-cohort-quality-label {
+  display: inline;
+  margin-right: -21px;
 }
 
-.sheet-cohort-name {
-  width: 250px;
-  margin: 5px;
+.sheet-cohort-armor-label {
+  display: inline;
+  margin-right: -11px;
+  margin-left: 13px;
 }
+
+
+select.sheet-cohort-health { width: 89px; }
+select.sheet-cohort-type { width: 68px; }
+
+
+textarea.sheet-cohort-notes {
+  width: 239px;
+  height: 50px;
+}
+
+/* Jobs Section Styling and Layout - Hunting Grounds Etc. */
 
 .sheet-freejob textarea, .repeating_freejob textarea {
   width: 330px;
@@ -756,7 +892,6 @@ select.sheet-cohort-health {
 .sheet-freejobs {
   width: 340px;
   margin-bottom: 10px;
-  margin-right: 20px;
 }
 
 .sheet-faction-section {
@@ -769,39 +904,10 @@ select.sheet-faction-hold {
     width: 45px;
 }
 
-
 .sheet-war-description {
   width: 350px;
 }
 
-input.sheet-knifeimg[type="radio"] {
-    opacity: 1;
-    z-index: 1;
-}
-
-
-.sheet-claim-checkboxes {
-    position: relative;
-}
-
-input.sheet-claim-claimed1,
-input.sheet-claim-claimed2,
-input.sheet-claim-claimed3,
-input.sheet-claim-claimed4,
-input.sheet-claim-claimed5 {
-  position: absolute;
-}
-
-input.sheet-claim-claimed1 {left: 50px;}
-input.sheet-claim-claimed2 {left: 203px;}
-input.sheet-claim-claimed3 {left: 357px;}
-input.sheet-claim-claimed4 {left: 511px;}
-input.sheet-claim-claimed5 {left: 665px;}
-
-.sheet-claimsection { margin-bottom: -70px;}
-.sheet-claims-checks1 { position: relative; top: -175px; }
-.sheet-claims-checks2 { position: relative; top: -92px; }
-.sheet-claims-checks3 { position: relative; top: -10px; }
 
 
 /* Roll template */
